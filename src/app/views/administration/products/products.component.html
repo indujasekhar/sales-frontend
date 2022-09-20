@@ -1,0 +1,61 @@
+<c-row>  
+  <c-col xs="12">
+    <c-card class="mb-4">
+      <c-card-header ngPreserveWhitespaces>
+        <strong>Create Products</strong>
+      </c-card-header>
+      <c-card-body>
+        <app-docs-example href="forms/layout#gutters">
+          <form cForm class="row g-3">
+            <c-col md="6">
+              <label cLabel for="inputEmail4">Product Name</label>
+              <input cFormControl id="inputEmail4" type="email" />
+            </c-col>
+            <c-col md="6">
+              <label cLabel for="inputPassword4">Description</label>
+              <input cFormControl id="inputPassword4" type="password" />
+            </c-col>
+            <c-col xs="12">
+              <button cButton type="submit">Create</button>
+            </c-col>
+          </form>
+        </app-docs-example>
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>
+
+
+<c-row ngPreserveWhitespaces>
+    <!--<c-col xs="12">
+      <app-docs-callout href="components/table" name="Table"></app-docs-callout>
+    </c-col>-->
+    <c-col xs="12">
+      <c-card class="mb-4">
+        <c-card-header>
+          <strong>Products</strong>
+        </c-card-header>
+        <c-card-body>          
+          <app-docs-example href="components/table#hoverable-rows">
+            <table [hover]="true" cTable>
+              <thead>
+              <tr>                
+                <th scope="col">Product Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Modified Date</th>
+              </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of products">
+                  <td>{{product.productName}}</td>
+                  <td>{{product.productDescription}}</td>
+                  <td>{{product.modifiedDate}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </app-docs-example>        
+        </c-card-body>
+      </c-card>
+    </c-col>   
+  </c-row>
+  
