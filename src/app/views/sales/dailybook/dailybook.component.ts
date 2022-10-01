@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dailybook.component.scss']
 })
 export class DailybookComponent implements OnInit {
-
+  public date = new Date();
   constructor() { }
 
   ngOnInit(): void {
