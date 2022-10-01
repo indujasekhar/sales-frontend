@@ -6,10 +6,10 @@
         </c-card-header>
         <c-card-body>
           <app-docs-example href="forms/layout#gutters">
-            <form cForm class="row g-3">
+            <form cForm class="row g-3" #usertypeform="ngForm" (submit)="createUserType(usertypeform.value)">
               <c-col md="6">
-                <label cLabel for="inputEmail4">User Type</label>
-                <input cFormControl id="inputEmail4" type="email" />
+                <label cLabel for="txtUserType">User Type</label>
+                <input cFormControl id="txtUserType" type="text" name="typeName" ngModel/>
               </c-col>
               <!--<c-col xs="12">
                 <label cLabel for="inputAddress">Date</label>

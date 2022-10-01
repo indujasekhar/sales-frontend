@@ -16,4 +16,7 @@ export class UsertypeComponent implements OnInit {
     response.subscribe((data) => this.usertypes=data);
   }
 
+  createUserType(userTypeData:any) {
+    console.log(userTypeData);
+  }
 }
