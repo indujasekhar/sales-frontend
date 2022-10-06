@@ -16,6 +16,7 @@
     "src/**/*.d.ts",
     //"src/**/administration-routing.module.ts",
     "src/app/views/administration",
-    "src/app/views/sales"
+    "src/app/views/sales",
+    "src/app/service"
   ]
 }

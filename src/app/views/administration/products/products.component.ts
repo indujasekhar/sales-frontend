@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ProductsService } from 'src/app/service/products.service';
 
 //import { ERPBackendService } from 'src/app/core/backend-client/backend.service';
 //import { finalize,take } from 'rxjs';
@@ -11,24 +12,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProductsComponent implements OnInit {
 
-  products:any;
+  productList:any;
 
-  constructor(private http:HttpClient) { }
-  //constructor(private readonly backend: ERPBackendService) { }
+  constructor(private service:ProductsService) { }
 
   ngOnInit(): void {
-    let response = this.http.get("http://localhost:8080/products");
-    response.subscribe((data) => this.products=data);
-    //this.products = [];
-    //this.fetchAllProducts();
+    this.getAllProducts();
   }
 
-  /*public fetchAllProducts(): void {
-    const productsList = this.backend.getAllProducts();
-    productsList.pipe(
-      take(1)).subscribe(products => {
-        this.products = products;
-      });
-  }*/
+  getAllProducts() {
+    this.service.getAllProducts().subscribe(item => {
+      this.productList = item;
+    });
+  }
 
 }

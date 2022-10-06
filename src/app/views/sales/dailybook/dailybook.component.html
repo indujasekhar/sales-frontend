@@ -6,26 +6,39 @@
         </c-card-header>
         <c-card-body>
           <app-docs-example href="forms/select">
-            <form cForm class="row g-3">
+            <form cForm class="row g-3" #dailybookform="ngForm" (submit)="createDailyBook(dailybookform.value)">
               <c-col md="3">
                 <label cLabel for="selParticulars">Particulars</label>
-                <select id="selParticulars" aria-label="Default select example" cSelect>
+                <select id="selParticulars" aria-label="Default select example" name="particularId" ngModel cSelect>
                   <option>Select</option>
-                  <option value="1">Salary</option>
-                  <option value="2">Hospital</option>
+                  <option *ngFor="let particular of particularList" [value]="particular.particularId">
+                    {{particular.particularName}}
+                  </option>
+                </select>
+              </c-col>
+              <!--The data have to be changed to users-->
+              <c-col md="3">
+                <label cLabel for="selUser">User</label>
+                <select id="selUser" aria-label="Default select example" name="particularId" ngModel cSelect>
+                  <option>Select</option>
+                  <option *ngFor="let particular of particularList" [value]="particular.particularId">
+                    {{particular.particularName}}
+                  </option>
                 </select>
               </c-col>
               <c-col md="3">
-                <label cLabel for="calDate">Date</label>
-                <div class="col-lg-4">
-                <div data-coreui-date=date data-coreui-locale="en-US" data-coreui-toggle="date-picker" id="calDate"></div>
-                </div>
+                <label cLabel for="txtAmount">Amount</label>
+                <c-input-group>
+                  <span cInputGroupText>₹</span>
+                  <input aria-label="Amount" cFormControl placeholder="Amount" autocomplete="off" name="amount" ngModel/>
+                  <span cInputGroupText>.00</span>
+                </c-input-group>
+              </c-col>
+              <c-col xs="12">
+                <button cButton type="submit">Create</button>
               </c-col>
             </form>            
-          </app-docs-example>
-          <c-col xs="12">
-            <button cButton type="submit">Create</button>
-          </c-col>
+          </app-docs-example>          
         </c-card-body>
       </c-card>
     </c-col>
@@ -49,11 +62,12 @@
               </tr>
               </thead>
               <tbody>
-                <!--<tr *ngFor="let product of products">
-                  <td>{{product.productName}}</td>
-                  <td>{{product.productDescription}}</td>
-                  <td>{{product.modifiedDate}}</td>
-                </tr>-->
+                <tr *ngFor="let dailyBook of dailyBookList">
+                  <td>{{dailyBook.particularId}}</td>
+                  <td>{{dailyBook.userId}}</td>
+                  <td>{{dailyBook.dailyBookDate}}</td>
+                  <td>{{dailyBook.amount}}</td>
+                </tr>
               </tbody>
             </table>
           </app-docs-example>
