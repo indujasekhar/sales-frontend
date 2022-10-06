@@ -4,7 +4,7 @@ import { DailybookComponent } from './dailybook/dailybook.component';
 import {SalesRoutingModule} from './sales-routing.module';
 import { IconModule } from '@coreui/icons-angular';
 import { DocsComponentsModule } from '@docs-components/docs-components.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { 
   AccordionModule,
@@ -58,6 +58,7 @@ import {
     CarouselModule,
     FormModule,
     ReactiveFormsModule,
+    FormsModule,
     DropdownModule,
     PaginationModule,
     PopoverModule,

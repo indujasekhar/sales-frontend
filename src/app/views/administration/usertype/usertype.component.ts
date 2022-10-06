@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { UsertypeService } from 'src/app/service/usertype.service';
 
 
 @Component({
@@ -9,14 +10,27 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UsertypeComponent implements OnInit {
   usertypes: any;
-  constructor(private http:HttpClient) { }
+  responseData:any;
+  constructor(private service:UsertypeService) { }
 
   ngOnInit(): void {
-    let response = this.http.get("http://localhost:8080/userType");
-    response.subscribe((data) => this.usertypes=data);
+    this.getAllUserTypes();
+   // let response = this.http.get("http://localhost:8080/userType");
+    //response.subscribe((data) => this.usertypes=data);
+  }
+
+  getAllUserTypes() {
+    this.service.getAllUserTypes().subscribe(item=> {
+      this.usertypes = item;
+      console.log("UserTypeList"+this.usertypes);
+    });
   }
 
   createUserType(userTypeData:any) {
-    console.log(userTypeData);
+    console.log("REQ USERType"+userTypeData);
+    this.service.createUserType(userTypeData).subscribe(item=> {
+      this.responseData = item;
+      console.log(this.responseData);
+    });
   }
 }

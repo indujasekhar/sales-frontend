@@ -32,7 +32,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "preserveSymlinks": true,
+            "preserveSymlinks": true,            
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -89,7 +89,10 @@
               "browserTarget": "coreui-free-angular-admin-template:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "proxyConfig": "src/proxy.conf.json"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
