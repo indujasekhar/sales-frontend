@@ -6,17 +6,16 @@
         </c-card-header>
         <c-card-body>
           <app-docs-example href="forms/layout#gutters">
-            <form cForm class="row g-3" #usertypeform="ngForm" (submit)="createUserType(usertypeform.value)">
+            <form cForm class="row g-3 needs-validation" #usertypeform="ngForm" [validated]="userFormValidations"
+            (ngSubmit)="createUserType(usertypeform.value); usertypeform.resetForm()">
               <c-col md="6">
                 <label cLabel for="txtUserType">User Type</label>
-                <input cFormControl id="txtUserType" type="text" name="typeName" autocomplete="off" ngModel/>
+                <input cFormControl id="txtUserType" required maxlength="20" type="text" name="typeName" autocomplete="off" 
+                onkeydown="return /[a-z]/i.test(event.key)" ngModel/>
               </c-col>
-              <!--<c-col xs="12">
-                <label cLabel for="inputAddress">Date</label>
-                <input cFormControl id="inputAddress" type="date"/>
-              </c-col>-->
               <c-col xs="12">
-                <button cButton type="submit">Create</button>
+                  <button xs="12" cButton class="me-1" type="submit">Create</button>
+                  <button xs="12" cButton class="me-1" type="button" (click)="resetFields(usertypeform)">Reset</button>
               </c-col>
             </form>
           </app-docs-example>
@@ -27,9 +26,6 @@
   
   
   <c-row ngPreserveWhitespaces>
-      <!--<c-col xs="12">
-        <app-docs-callout href="components/table" name="Table"></app-docs-callout>
-      </c-col>-->
       <c-col xs="12">
         <c-card class="mb-4">
           <c-card-header>

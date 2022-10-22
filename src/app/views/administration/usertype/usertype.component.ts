@@ -9,28 +9,31 @@ import { UsertypeService } from 'src/app/service/usertype.service';
   styleUrls: ['./usertype.component.scss']
 })
 export class UsertypeComponent implements OnInit {
+  userFormValidations = false;
   usertypes: any;
   responseData:any;
   constructor(private service:UsertypeService) { }
 
   ngOnInit(): void {
     this.getAllUserTypes();
-   // let response = this.http.get("http://localhost:8080/userType");
-    //response.subscribe((data) => this.usertypes=data);
   }
 
   getAllUserTypes() {
     this.service.getAllUserTypes().subscribe(item=> {
       this.usertypes = item;
-      console.log("UserTypeList"+this.usertypes);
     });
   }
 
+  resetFields(userTypeData:any) {
+    this.userFormValidations = false;
+    userTypeData.resetForm();
+  }
+
   createUserType(userTypeData:any) {
-    console.log("REQ USERType"+userTypeData);
+    this.userFormValidations = true;
     this.service.createUserType(userTypeData).subscribe(item=> {
       this.responseData = item;
-      console.log(this.responseData);
+      this.ngOnInit();
     });
   }
 }
