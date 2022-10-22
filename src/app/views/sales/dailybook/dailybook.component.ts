@@ -11,6 +11,7 @@ export class DailybookComponent implements OnInit {
   particularList:any;
   dailyBookList:any;
   reponseData:any;
+  userListForParticular:any;
   constructor(private service:DailybookService) { }
 
   ngOnInit(): void {
@@ -21,6 +22,18 @@ export class DailybookComponent implements OnInit {
   getAllParticulars() {
     this.service.getAllParticulars().subscribe(item=> {
       this.particularList = item;
+    });
+  }
+
+  getAllUsersList() {
+    this.service.getAllUsersList().subscribe(item=> {
+      //map to the list
+    });
+  }
+
+  getUsersForParticular(particularId:string) {
+    this.service.getUsersForParticular(particularId).subscribe(item=> {
+      this.userListForParticular = item;
     });
   }
 
@@ -35,6 +48,12 @@ export class DailybookComponent implements OnInit {
       this.reponseData = item;
     });
     this.getAllDailyBooks();
+  }
+
+  onParticularChange(selParticular:string) {   
+    if(selParticular == "1" || selParticular == "2") {
+      this.getUsersForParticular(selParticular);
+    }
   }
 
 }

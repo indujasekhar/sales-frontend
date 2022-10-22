@@ -20,4 +20,12 @@ export class DailybookService {
   createDailyBook(dailyBookData:any) {
     return this.http.post(`${environment.baseUrl}/dailyBook`, dailyBookData);
   }
+
+  getAllUsersList() {
+    return this.http.get(`${environment.baseUrl}/userDetails`);
+  }
+
+  getUsersForParticular(particularId:string) {
+    return this.http.get(`${environment.baseUrl}/userDetails/${particularId}`)
+  }
 }

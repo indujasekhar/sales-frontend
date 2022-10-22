@@ -9,20 +9,20 @@
             <form cForm class="row g-3" #dailybookform="ngForm" (submit)="createDailyBook(dailybookform.value)">
               <c-col md="3">
                 <label cLabel for="selParticulars">Particulars</label>
-                <select id="selParticulars" aria-label="Default select example" name="particularId" ngModel cSelect>
-                  <option>Select</option>
+                <select #selParticulars id="selParticulars" aria-label="Default select example" name="particularId" 
+                  (ngModelChange)='onParticularChange(selParticulars.value)' ngModel cSelect>
+                  <option selected>Select</option>
                   <option *ngFor="let particular of particularList" [value]="particular.particularId">
                     {{particular.particularName}}
                   </option>
                 </select>
               </c-col>
-              <!--The data have to be changed to users-->
               <c-col md="3">
                 <label cLabel for="selUser">User</label>
-                <select id="selUser" aria-label="Default select example" name="particularId" ngModel cSelect>
+                <select id="selUser" aria-label="Default select example" name="userId" ngModel cSelect>
                   <option>Select</option>
-                  <option *ngFor="let particular of particularList" [value]="particular.particularId">
-                    {{particular.particularName}}
+                  <option *ngFor="let user of userListForParticular" [value]="user.userId">
+                    {{user.fullName}}
                   </option>
                 </select>
               </c-col>
@@ -30,13 +30,13 @@
                 <label cLabel for="txtAmount">Amount</label>
                 <c-input-group>
                   <span cInputGroupText>₹</span>
-                  <input aria-label="Amount" cFormControl placeholder="Amount" autocomplete="off" name="amount" ngModel/>
+                  <input aria-label="Amount" type="number" cFormControl placeholder="Amount" autocomplete="off" name="amount" ngModel/>
                   <span cInputGroupText>.00</span>
                 </c-input-group>
               </c-col>
               <c-col xs="12">
                 <button cButton type="submit">Create</button>
-              </c-col>
+              </c-col>              
             </form>            
           </app-docs-example>          
         </c-card-body>
@@ -63,13 +63,32 @@
               </thead>
               <tbody>
                 <tr *ngFor="let dailyBook of dailyBookList">
-                  <td>{{dailyBook.particularId}}</td>
-                  <td>{{dailyBook.userId}}</td>
+                  <td>{{dailyBook.particularName}}</td>
+                  <td>{{dailyBook.fullName}}</td>
                   <td>{{dailyBook.dailyBookDate}}</td>
                   <td>{{dailyBook.amount}}</td>
                 </tr>
               </tbody>
             </table>
+            <!--Pagination start-->
+            <c-pagination aria-label="Page navigation example">
+              <c-page-item [disabled]="true" aria-label="Previous">
+                <a cPageLink routerLink="./"><span aria-hidden="true">&laquo;</span></a>
+              </c-page-item>
+              <c-page-item [active]="true">
+                <a routerLink="./" cPageLink>1</a>
+              </c-page-item>
+              <c-page-item>
+                <a cPageLink routerLink="./">2</a>
+              </c-page-item>
+              <c-page-item>
+                <a cPageLink routerLink="./">3</a>
+              </c-page-item>
+              <c-page-item aria-label="Next">
+                <a cPageLink routerLink="./"><span aria-hidden="true">&raquo;</span></a>
+              </c-page-item>
+            </c-pagination>
+            <!--Pagination end-->
           </app-docs-example>
         </c-card-body>
       </c-card>
