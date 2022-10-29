@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DailybookComponent } from './dailybook/dailybook.component';
-import {SalesRoutingModule} from './sales-routing.module';
+import { SalesorderComponent } from './salesorder/salesorder.component';
+import { SalesRoutingModule} from './sales-routing.module';
 import { IconModule } from '@coreui/icons-angular';
 import { DocsComponentsModule } from '@docs-components/docs-components.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -34,7 +35,8 @@ import {
 
 @NgModule({
   declarations: [
-    DailybookComponent
+    DailybookComponent,
+    SalesorderComponent
   ],
   imports: [
     CommonModule,
