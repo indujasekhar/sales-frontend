@@ -33,6 +33,10 @@ export const navItems: INavData[] = [
       {
         name: 'Daily Book',
         url: '/sales/dailybook'
+      },
+      {
+        name: 'Sales Order',
+        url: '/sales/salesorder'
       }
     ]
   },
